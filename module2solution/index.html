@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" ng-app="ShoppingListCheckOff">
+  <head >
+    <title >Shopping List Check Off</title>
+    <meta  name="viewport" content="width=device-width, initial-scale=1">
+    <link  rel="stylesheet" href="styles/bootstrap.min.css">
+    
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <script src="angular.min.js"></script>
+      <script src="app.js"></script>
+    <style>
+      .emptyMessage {
+        font-weight: bold;
+        color: red;
+        font-size: 1.2em;
+      }
+      li {
+        margin-bottom: 7px;
+        font-size: 1.2em;
+      }
+      li > button {
+        margin-left: 6px;
+      }
+      button > span {
+        color: green;
+      }
+    </style>
+  </head>
+  <body ng-app="ShoppingListCheckOff">
+
+      <h3 style="text-align: center; margin-top: 80px;">Shopping List Check Off </h3>
+
+      <!--To Buy Shopping List -->
+      <div class="container">
+          <br />
+          <br/>
+          <div class="col-md-6"  ng-controller="ToBuyController as ctr1">
+              <h5>To buy:</h5>
+
+              <ol type="1">
+                  <li ng-repeat="item in ctr1.itemlist">Buy {{item.quantity}} {{item.name}} 
+                      <button ng-click="ctr1.Add($index);" class="btn btn-light btn-sm"><span style="color: green;">&#10003;</span>  BUY</button>
+                  </li>
+              </ol>
+
+              <div ng-show="ctr1.itemlist.length==0"  class="error">Nothing Left to BUY!!</div>
+              <br/>
+              <br/>
+
+          </div>  
+             <!--The Bought Shopping List -->
+            <div class="col-md-6" ng-controller="AlreadyBoughtController as ctr2">
+              <h5>Bought:</h5>
+
+              <ol type="1">
+                <li ng-repeat="item in ctr2.itemlist">Bought {{item.quantity}} of {{item.name}} 
+                 
+                </li>
+            </ol>
+
+              <div ng-if="ctr2.itemlist.length==0"  class="error">Nothing is Bought yet!!</div>
+            </div> 
+      </div>
+
+</body>
+</html>
+
